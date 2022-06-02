@@ -1,0 +1,19 @@
+{
+  "name": "movie-reviewer",
+  "version": "1.0.0",
+  "description": "The app that show you the trends and movies you prefer",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/x4mv/movie-reviewer.git"
+  },
+  "author": "x4mv",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/x4mv/movie-reviewer/issues"
+  },
+  "homepage": "https://github.com/x4mv/movie-reviewer#readme"
+}
