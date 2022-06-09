@@ -1,5 +1,5 @@
 searchFormBtn.addEventListener('click', () =>{
-    location.hash = '#search='
+    location.hash = '#search=' + searchFormInput.value
 })
 
 trendingBtn.addEventListener('click', () =>{
@@ -7,7 +7,8 @@ trendingBtn.addEventListener('click', () =>{
 })
 
 arrowBtn.addEventListener('click', () =>{
-    location.hash = '#home'
+    history.back()
+    //location.hash = window.history.back();
 })
 
 
@@ -29,6 +30,8 @@ function navigator() {
     }else {
         homePage()
     }
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
 }
 
 function trendsPage() {
@@ -47,6 +50,8 @@ function trendsPage() {
     genericSection.classList.remove('inactive')
     movieDetailSection.classList.add('inactive')
 
+    headerCategoryTitle.innerHTML = 'Trends'
+    getTrendingMovies()
 }
 
 function searchPage() {
@@ -57,7 +62,7 @@ function searchPage() {
     arrowBtn.classList.remove('inactive');
     arrowBtn.classList.remove('header-arrow--white');
     headerTitle.classList.add('inactive');
-    headerCategoryTitle.classList.remove('inactive');
+    headerCategoryTitle.classList.add('inactive');
     searchForm.classList.remove('inactive');
 
     trendingPreviewSection.classList.add('inactive');
@@ -66,6 +71,14 @@ function searchPage() {
     movieDetailSection.classList.add('inactive')
 
 
+        // ['#search=', 'Robot']
+        const [_, query ] = location.hash.split('=')
+
+        if(query === ''){
+            location.hash = '#home'
+        }else{
+            getMoviesBySearch(query);
+        }
 
 }
 
@@ -85,7 +98,10 @@ function movieDetailsPage() {
     genericSection.classList.add('inactive')
     movieDetailSection.classList.remove('inactive')
 
+    // ['#movie', 'Robot']
+    const [_, movieId ] = location.hash.split('=')
 
+    getMovieById(movieId)
 }
 
 function categoriesPage() {
@@ -106,6 +122,13 @@ function categoriesPage() {
     movieDetailSection.classList.add('inactive')
 
 
+    // ['#category', 'id-name']
+    const [_, categoryData] = location.hash.split('=')
+    const [categoryId , categoryName] = categoryData.split('-')
+
+    headerCategoryTitle.innerHTML = categoryName
+
+    getMoviesByCategory(categoryId)
 
 }
 
